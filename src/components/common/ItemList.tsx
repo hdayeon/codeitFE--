@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React from "react";
 import Link from "next/link";
 
 import * as S from "../../styles/home.style";
@@ -8,6 +8,7 @@ import * as SC from "../../styles/common/btn.style";
 import { toggleTodosDone } from "utils/toggleTodo";
 
 import { TodoType } from "types/todo";
+import palette from "styles/palette";
 
 interface ItemListProps {
   todos: TodoType[];
@@ -21,7 +22,10 @@ const ItemList: React.FC<ItemListProps> = ({ todos, isDone, setTodos }) => {
       {todos
         ?.filter((item) => item.isCompleted === isDone)
         .map((item) => (
-          <S.TodoListItem key={item.id}>
+          <S.TodoListItem
+            key={item.id}
+            $bgColor={item.isCompleted ? palette.violet100 : "none"}
+          >
             <SC.TodoToggleBtn
               $isDone={isDone}
               onClick={() => toggleTodosDone(item.id, todos, setTodos)}
