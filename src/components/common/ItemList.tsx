@@ -16,6 +16,7 @@ interface ItemListProps {
   setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
 }
 
+// Todo 리스트 컴포넌트
 const ItemList: React.FC<ItemListProps> = ({ todos, isDone, setTodos }) => {
   return (
     <S.TodoList>

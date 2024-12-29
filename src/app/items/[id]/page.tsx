@@ -12,9 +12,11 @@ import { TodoType } from "types/todo";
 
 import { BASE_URL } from "api/url";
 
+// Todo 상세페이지
 const Detail: React.FC = () => {
   const router = useRouter();
   const id = usePathname();
+
   const [todo, setTodo] = useState<TodoType>({
     id: 0,
     name: "",
@@ -28,9 +30,7 @@ const Detail: React.FC = () => {
   useEffect(() => {
     if (id) {
       const fetchTodo = async () => {
-        const response = await fetch(
-          `${BASE_URL}${id}`
-        );
+        const response = await fetch(`${BASE_URL}${id}`);
         const data: TodoType = await response.json();
         setTodo(data);
         setPreview(data.imageUrl || null);
@@ -71,13 +71,10 @@ const Detail: React.FC = () => {
     formData.append("image", file);
 
     try {
-      const res = await fetch(
-        `${BASE_URL}/images/upload`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const res = await fetch(`${BASE_URL}/images/upload`, {
+        method: "POST",
+        body: formData,
+      });
       console.log("업로드 res", res);
 
       if (res) {
@@ -112,16 +109,13 @@ const Detail: React.FC = () => {
       };
 
       try {
-        const res = await fetch(
-          `${BASE_URL}${id}`,
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedTodo),
-          }
-        );
+        const res = await fetch(`${BASE_URL}${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedTodo),
+        });
         if (res.ok) {
           router.push("/");
           alert("수정이 완료되었습니다.");
@@ -137,15 +131,12 @@ const Detail: React.FC = () => {
   const deleteHandler = async () => {
     if (id) {
       try {
-        const res = await fetch(
-          `${BASE_URL}${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const res = await fetch(`${BASE_URL}${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         if (res.ok) {
           router.push("/");
           alert("삭제가 완료되었습니다.");
