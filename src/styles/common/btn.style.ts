@@ -19,7 +19,8 @@ export const TodoToggleBtn = styled.button<{ $isDone?: boolean }>`
   border-radius: 50%;
   border: 2px solid
     ${({ $isDone }) => ($isDone ? palette.violet600 : palette.slate900)};
-  background-color: ${({ $isDone }) => ($isDone ? palette.violet600 : "#fefce8")};
+  background-color: ${({ $isDone }) =>
+    $isDone ? palette.violet600 : "#fefce8"};
   background-image: ${({ $isDone }) =>
     $isDone ? 'url("/checkedBtn.png")' : "none"};
   background-position: center;
