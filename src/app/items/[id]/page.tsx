@@ -10,6 +10,8 @@ import { toggleTodoDone } from "utils/toggleTodo";
 
 import { TodoType } from "types/todo";
 
+import { BASE_URL } from "api/url";
+
 const Detail: React.FC = () => {
   const router = useRouter();
   const id = usePathname();
@@ -27,7 +29,7 @@ const Detail: React.FC = () => {
     if (id) {
       const fetchTodo = async () => {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_APP_SERVER_URL}${id}`
+          `${BASE_URL}${id}`
         );
         const data: TodoType = await response.json();
         setTodo(data);
@@ -70,7 +72,7 @@ const Detail: React.FC = () => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_SERVER_URL}/images/upload`,
+        `${BASE_URL}/images/upload`,
         {
           method: "POST",
           body: formData,
@@ -111,7 +113,7 @@ const Detail: React.FC = () => {
 
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_APP_SERVER_URL}${id}`,
+          `${BASE_URL}${id}`,
           {
             method: "PATCH",
             headers: {
@@ -136,7 +138,7 @@ const Detail: React.FC = () => {
     if (id) {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_APP_SERVER_URL}${id}`,
+          `${BASE_URL}${id}`,
           {
             method: "DELETE",
             headers: {

@@ -1,10 +1,12 @@
 import { TodoType } from "types/todo";
 
+import { BASE_URL } from "api/url";
+
 // Todo 배열인 경우
 export const toggleTodosDone = async (
   id: number,
   todos: TodoType[],
-  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>,
+  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>
 ) => {
   const updatedTodos = todos.map((item) =>
     item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
@@ -14,7 +16,7 @@ export const toggleTodosDone = async (
   try {
     const updatedTodo = updatedTodos.find((item) => item.id === id);
     if (updatedTodo) {
-      await fetch(`${process.env.NEXT_PUBLIC_APP_SERVER_URL}/items/${id}`, {
+      await fetch(`${BASE_URL}/items/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -30,13 +32,13 @@ export const toggleTodosDone = async (
 // Todo 개별인 경우
 export const toggleTodoDone = async (
   todo: TodoType,
-  setTodo: React.Dispatch<React.SetStateAction<TodoType>>,
+  setTodo: React.Dispatch<React.SetStateAction<TodoType>>
 ) => {
   const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
   setTodo(updatedTodo);
 
   try {
-    await fetch(`${process.env.NEXT_PUBLIC_APP_SERVER_URL}/items/${todo.id}`, {
+    await fetch(`${BASE_URL}/items/${todo.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

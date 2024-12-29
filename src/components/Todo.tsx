@@ -8,15 +8,15 @@ import ItemList from "./common/ItemList";
 
 import { TodoType } from "types/todo";
 
+import { BASE_URL } from "api/url";
+
 const Todo: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<TodoType[]>([]);
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_APP_SERVER_URL}/items`
-      );
+      const res = await fetch(`${BASE_URL}/items`);
       const todos = await res.json();
       setTodos(todos);
     };
@@ -25,7 +25,7 @@ const Todo: React.FC = () => {
   }, []);
 
   const addTodo = async (newTodo: string) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_SERVER_URL}/items`, {
+    const res = await fetch(`${BASE_URL}/items`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
