@@ -10,6 +10,7 @@ import { TodoType } from "types/todo";
 
 import { BASE_URL } from "api/url";
 
+// Todo 입력칸과 리스트 컴포넌트
 const Todo: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<TodoType[]>([]);
@@ -57,6 +58,7 @@ const Todo: React.FC = () => {
 
   return (
     <S.HomeLayout>
+      {/* Todo 입력 부분 */}
       <S.HomeInputRow>
         <S.TodoInput
           placeholder="할 일을 입력해주세요"
@@ -68,9 +70,22 @@ const Todo: React.FC = () => {
             }
           }}
         />
-        <S.AddBtn $bgImg="/addL.png" onClick={addTodoHandler}></S.AddBtn>
+        {todos.length > 0 ? (
+          <S.AddBtn
+            $bgImg="/addL.png"
+            $bgImgS="/addS.png"
+            onClick={addTodoHandler}
+          />
+        ) : (
+          <S.AddBtn
+            $bgImg="/addActiveL.png"
+            $bgImgS="/addActiveS.png"
+            onClick={addTodoHandler}
+          />
+        )}
       </S.HomeInputRow>
 
+      {/* Todo 리스트 */}
       <S.TodoListRow>
         {/* 미완료 */}
         <S.ItemListSection>

@@ -32,20 +32,14 @@ export const TodoInput = styled.input`
   background-color: ${palette.slate100};
 `;
 
-export const AddBtn = styled(Btn)`
-  width: 168px;
+export const AddBtn = styled(Btn)<{ $bgImgS: string }>`
   min-width: 162px;
-  height: 56px;
-  border: none;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
 
   ${media.small`
     width: 56px;
     min-width: 56px;
     height: 56px;
-    background-image: url("/addS.png");
+    background-image: url(${({ $bgImgS }) => $bgImgS});
   `};
 `;
 
