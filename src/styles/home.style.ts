@@ -39,7 +39,8 @@ export const AddBtn = styled(Btn)<{ $bgImgS: string }>`
     width: 56px;
     min-width: 56px;
     height: 56px;
-    background-image: url(${({ $bgImgS }) => $bgImgS});
+    background-image: ${({ $bgImgS }: { $bgImgS: string }) =>
+      `url(${$bgImgS})`};
   `};
 `;
 
