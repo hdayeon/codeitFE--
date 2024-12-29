@@ -84,10 +84,9 @@ export const TodoImgBox = styled.div`
 export const TodoImgP = styled.p`
   width: 100%;
   height: 100%;
-  position: absolute;
-
-  top: 50%;
-  transform: translateY(-32px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 `;
 
@@ -102,7 +101,8 @@ export const TodoMemoBox = styled.div`
   width: 100%;
   max-width: 588px;
   height: 311px;
-  background-image: url("/memo.png");
+  font-family: "NanumSquare";
+  background-image: url("/memo.svg");
 
   display: flex;
   align-items: center;
@@ -119,6 +119,7 @@ export const ImgAddBtn = styled.button<{ $bgImg: string }>`
   border-radius: 50%;
   border: none;
   background-image: url(${({ $bgImg }) => $bgImg});
+  background-color: transparent;
 
   position: absolute;
   bottom: 10px;
@@ -139,6 +140,7 @@ export const TodoMemoP = styled.p`
 
 export const TodoMemoText = styled.textarea`
   width: 100%;
+  font-family: "NanumSquare";
 
   border: none;
   resize: none;

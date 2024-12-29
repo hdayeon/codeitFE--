@@ -1,5 +1,6 @@
 import { TodoType } from "types/todo";
 
+// Todo 배열인 경우
 export const toggleTodosDone = async (
   id: number,
   todos: TodoType[],
@@ -21,6 +22,27 @@ export const toggleTodosDone = async (
         body: JSON.stringify({ isCompleted: updatedTodo.isCompleted }),
       });
     }
+  } catch (error) {
+    console.error("todo 완료 상태 변경 실패", error);
+  }
+};
+
+// Todo 개별인 경우
+export const toggleTodoDone = async (
+  todo: TodoType,
+  setTodo: React.Dispatch<React.SetStateAction<TodoType>>,
+) => {
+  const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
+  setTodo(updatedTodo);
+
+  try {
+    await fetch(`${process.env.NEXT_PUBLIC_APP_SERVER_URL}/items/${todo.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ isCompleted: updatedTodo.isCompleted }),
+    });
   } catch (error) {
     console.error("todo 완료 상태 변경 실패", error);
   }
