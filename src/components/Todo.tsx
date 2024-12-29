@@ -72,34 +72,84 @@ const Todo: React.FC = () => {
       </S.HomeInputRow>
 
       <S.TodoListRow>
-        <ItemList
-          icon={
-            <Image
-              src="/todo.svg"
-              alt="Todo Icon"
-              priority
-              width={101}
-              height={36}
-            />
-          }
-          todos={todos}
-          isDone={false}
-          setTodos={setTodos}
-        />
-        <ItemList
-          icon={
-            <Image
-              src="/done.svg"
-              alt="done Icon"
-              priority
-              width={97}
-              height={36}
-            />
-          }
-          todos={todos}
-          isDone={true}
-          setTodos={setTodos}
-        />
+        {/* 미완료 */}
+        <S.ItemListSection>
+          <Image
+            src="/todo.svg"
+            alt="Todo Icon"
+            priority
+            width={101}
+            height={36}
+          />
+          {todos.filter((item) => !item.isCompleted).length > 0 ? (
+            <ItemList todos={todos} isDone={false} setTodos={setTodos} />
+          ) : (
+            <S.EmpBox>
+              <S.EmpLP>
+                <Image
+                  src="/emptyTodoL.svg"
+                  alt="empty Icon"
+                  priority
+                  width={240}
+                  height={240}
+                />
+              </S.EmpLP>
+              <S.EmpSP>
+                <Image
+                  src="/emptyTodoS.svg"
+                  alt="empty Icon"
+                  priority
+                  width={120}
+                  height={120}
+                />
+              </S.EmpSP>
+              <S.EmpP>
+                할 일이 없어요.
+                <br />
+                TODO를 새롭게 추가해주세요!
+              </S.EmpP>
+            </S.EmpBox>
+          )}
+        </S.ItemListSection>
+        {/* 완료 */}
+        <S.ItemListSection>
+          <Image
+            src="/done.svg"
+            alt="done Icon"
+            priority
+            width={97}
+            height={36}
+          />
+          {todos.filter((item) => item.isCompleted).length > 0 ? (
+            <ItemList todos={todos} isDone={true} setTodos={setTodos} />
+          ) : (
+            <S.EmpBox>
+              <S.EmpLP>
+                <Image
+                  src="/emptyDoneL.svg"
+                  alt="empty Icon"
+                  priority
+                  width={240}
+                  height={240}
+                />
+              </S.EmpLP>
+              <S.EmpSP>
+                <Image
+                  src="/emptyDoneS.svg"
+                  alt="empty Icon"
+                  priority
+                  width={120}
+                  height={120}
+                />
+              </S.EmpSP>
+              <S.EmpP>
+                아직 다 한 일이 없어요.
+                <br />
+                해야 할 일을 체크해보세요!
+              </S.EmpP>
+            </S.EmpBox>
+          )}
+        </S.ItemListSection>
       </S.TodoListRow>
     </S.HomeLayout>
   );

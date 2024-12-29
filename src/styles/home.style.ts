@@ -62,6 +62,8 @@ export const TodoListRow = styled.div`
 
 export const ItemListSection = styled.section`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const TodoList = styled.ul`
@@ -88,4 +90,36 @@ export const TodoSpan = styled.span<{ $txtDeco?: string }>`
   font-size: 16px;
 
   text-decoration: ${({ $txtDeco }) => $txtDeco};
+`;
+
+export const EmpBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+`;
+
+export const EmpLP = styled.p`
+  display: block;
+
+  ${media.small`
+    display: none;
+  `};
+`;
+
+export const EmpSP = styled.p`
+  display: none;
+
+  ${media.small`
+    display: block;
+  `};
+`;
+
+export const EmpP = styled.p`
+  width: 100%;
+  font-weight: 700;
+  line-height: 18.16px;
+  color: ${palette.slate400};
 `;
