@@ -1,12 +1,12 @@
-import { TodoType } from "types/todo";
+import { TodoItem } from "../../schemas/todo";
 
 import { BASE_URL } from "api/url";
 
 // Todo 배열인 경우
 export const toggleTodosDone = async (
   id: number,
-  todos: TodoType[],
-  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>
+  todos: TodoItem[],
+  setTodos: React.Dispatch<React.SetStateAction<TodoItem[]>>
 ) => {
   const updatedTodos = todos.map((item) =>
     item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
@@ -31,8 +31,8 @@ export const toggleTodosDone = async (
 
 // Todo 개별인 경우
 export const toggleTodoDone = async (
-  todo: TodoType,
-  setTodo: React.Dispatch<React.SetStateAction<TodoType>>
+  todo: TodoItem,
+  setTodo: React.Dispatch<React.SetStateAction<TodoItem>>
 ) => {
   const updatedTodo = { ...todo, isCompleted: !todo.isCompleted };
   setTodo(updatedTodo);
