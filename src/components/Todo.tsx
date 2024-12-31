@@ -6,14 +6,14 @@ import Image from "next/image";
 import * as S from "../styles/home.style";
 import ItemList from "./common/ItemList";
 
-import { TodoType } from "types/todo";
+import { TodoItem } from "../../schemas/todo";
 
 import { BASE_URL } from "api/url";
 
 // Todo 입력칸과 리스트 컴포넌트
 const Todo: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
-  const [todos, setTodos] = useState<TodoType[]>([]);
+  const [todos, setTodos] = useState<TodoItem[]>([]);
 
   useEffect(() => {
     const fetchTodos = async () => {

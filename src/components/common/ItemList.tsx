@@ -7,13 +7,13 @@ import * as S from "../../styles/home.style";
 import * as SC from "../../styles/common/btn.style";
 import { toggleTodosDone } from "utils/toggleTodo";
 
-import { TodoType } from "types/todo";
+import { TodoItem } from "../../../schemas/todo";
 import palette from "styles/palette";
 
 interface ItemListProps {
-  todos: TodoType[];
+  todos: TodoItem[];
   isDone: boolean;
-  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
+  setTodos: React.Dispatch<React.SetStateAction<TodoItem[]>>;
 }
 
 // Todo 리스트 컴포넌트

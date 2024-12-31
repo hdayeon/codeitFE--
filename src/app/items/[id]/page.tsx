@@ -8,7 +8,7 @@ import * as S from "../../../styles/detail.style";
 import * as SC from "../../../styles/common/btn.style";
 import { toggleTodoDone } from "utils/toggleTodo";
 
-import { TodoType } from "types/todo";
+import { TodoItem } from "../../../../schemas/todo";
 
 import { BASE_URL } from "api/url";
 
@@ -17,7 +17,7 @@ const Detail: React.FC = () => {
   const router = useRouter();
   const id = usePathname();
 
-  const [todo, setTodo] = useState<TodoType>({
+  const [todo, setTodo] = useState<TodoItem>({
     id: 0,
     name: "",
     isCompleted: false,
@@ -31,7 +31,7 @@ const Detail: React.FC = () => {
     if (id) {
       const fetchTodo = async () => {
         const response = await fetch(`${BASE_URL}${id}`);
-        const data: TodoType = await response.json();
+        const data: TodoItem = await response.json();
         setTodo(data);
         setPreview(data.imageUrl || null);
       };
